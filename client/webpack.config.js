@@ -77,7 +77,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env.SERVER_URL":
         mode === "development"
-          ? JSON.stringify("localhost:3030")
+          ? JSON.stringify("http://localhost:3030")
           : JSON.stringify(""),
     }),
   ],

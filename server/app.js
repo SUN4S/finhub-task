@@ -24,6 +24,11 @@ try {
   console.log(error);
 }
 
+app.post("/api/stocks/query", (req, res) => {
+  const query = req.body.query;
+  return res.send(query);
+});
+
 // send html to base path, reloading on certain pages would throw 404
 app.get("/*", (req, res) => {
   res.sendFile(
