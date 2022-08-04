@@ -25,7 +25,7 @@ try {
 }
 
 // send html to base path, reloading on certain pages would throw 404
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(
     path.join(process.cwd(), "/build/public/index.html"),
     function (err) {

@@ -1,4 +1,10 @@
+import "./styles/normalize.css";
+
+import { Route, Routes } from "react-router";
+
+import { BrowserRouter } from "react-router-dom";
 import { Dashboard } from "./routes/Dashboard/Dashboard";
+import { Details } from "./routes/Details/Details";
 import React from "react";
 import ReactDOM from "react-dom/client";
 
@@ -9,7 +15,20 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <h1>Hello World</h1>
-    <Dashboard />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/:symbol" element={<Details />} />
+        {/* Catch all for 404 pages */}
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p>404 not found</p>
+            </main>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
