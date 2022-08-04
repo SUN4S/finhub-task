@@ -1,8 +1,9 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
-let mode = process.env.NODE_ENV ? "production" : "development";
+const webpack = require("webpack");
+
+let mode = process.env.NODE_ENV === "production" ? "production" : "development";
 
 module.exports = {
   mode: mode,
@@ -73,8 +74,11 @@ module.exports = {
       template: "src/index.html",
       title: "Finhub Lookup",
     }),
-    new Dotenv({
-      path: "./.env",
+    new webpack.DefinePlugin({
+      "process.env.SERVER_URL":
+        mode === "development"
+          ? JSON.stringify("localhost:3030")
+          : JSON.stringify(""),
     }),
   ],
   resolve: {
