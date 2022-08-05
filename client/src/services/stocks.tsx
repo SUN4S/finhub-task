@@ -1,10 +1,16 @@
-import { SearchQueryProps } from "../models/stocks";
+import { StockDataModel } from "../models/stocks";
 import { baseApi } from "./baseApi";
 
 // Inject a new budgetApi into the baseApi
 export const reportsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // query to get all weekly reports
+    search: builder.query({
+      query: (query: string) => ({
+        url: `/stocks/query/${query}`,
+        method: "GET",
+      }),
+      providesTags: ["Stocks"],
+    }),
     stockData: builder.query({
       query: (symbol: string) => ({
         url: `/stocks/getData/${symbol}`,
@@ -12,18 +18,19 @@ export const reportsApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Stocks"],
     }),
-    search: builder.mutation({
-      query: (queryData: SearchQueryProps) => ({
-        url: `/stocks/query`,
+    updateData: builder.mutation({
+      query: (updateData: StockDataModel) => ({
+        url: `/stocks/updateData`,
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
-        data: queryData,
+        data: updateData,
       }),
       invalidatesTags: ["Stocks"],
     }),
   }),
 });
 
-export const { useLazyStockDataQuery, useSearchMutation } = reportsApi;
+export const { useStockDataQuery, useLazySearchQuery, useUpdateDataMutation } =
+  reportsApi;

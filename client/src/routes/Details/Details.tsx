@@ -2,16 +2,17 @@ import "./Details.scss";
 
 import { useNavigate, useParams } from "react-router";
 
+import { DateTime } from "luxon";
 import { useEffect } from "react";
-import { useLazyStockDataQuery } from "../../services/stocks";
+import { useState } from "react";
+import { useStockDataQuery } from "../../services/stocks";
 
 export const Details = () => {
-  const [trigger, result] = useLazyStockDataQuery();
   const { symbol } = useParams();
 
-  useEffect(() => {
-    symbol && trigger(symbol);
-  }, [symbol]);
+  const queryObject = useStockDataQuery(symbol!);
+
+  console.log(queryObject.data);
 
   return <div id="details">Details</div>;
 };

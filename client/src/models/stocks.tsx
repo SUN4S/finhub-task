@@ -1,3 +1,5 @@
-export interface SearchQueryProps {
-  query: string;
+export interface StockDataModel {
+  symbol: string;
+  fromDate: number;
+  toDate: number;
 }

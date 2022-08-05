@@ -5,6 +5,8 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 
+const stocks = require("./routes/StockRoutes");
+
 const app = express();
 
 app.use(express.json());
@@ -24,10 +26,7 @@ try {
   console.log(error);
 }
 
-app.post("/api/stocks/query", (req, res) => {
-  const query = req.body.query;
-  return res.send(query);
-});
+app.use("/api/stocks", stocks);
 
 // send html to base path, reloading on certain pages would throw 404
 app.get("/*", (req, res) => {
