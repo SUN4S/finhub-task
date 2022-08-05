@@ -1,23 +1,17 @@
-import {
-  useLazyStockDataQuery,
-  useSearchMutation,
-} from "../../services/stocks";
+import "./Details.scss";
+
 import { useNavigate, useParams } from "react-router";
 
 import { useEffect } from "react";
+import { useLazyStockDataQuery } from "../../services/stocks";
 
 export const Details = () => {
-  // Redux toolkit mutation to handle query
-  const [search, { isLoading }] = useSearchMutation();
   const [trigger, result] = useLazyStockDataQuery();
   const { symbol } = useParams();
 
   useEffect(() => {
     symbol && trigger(symbol);
-    search({ query: "Hello There" });
   }, [symbol]);
-  console.log(isLoading);
-  console.log(result);
 
-  return <div>Details</div>;
+  return <div id="details">Details</div>;
 };
