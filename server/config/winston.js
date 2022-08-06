@@ -1,4 +1,5 @@
 import "winston-daily-rotate-file";
+import "winston-mongodb";
 
 import dotenv from "dotenv";
 import path from "path";
@@ -103,6 +104,14 @@ export const logger = winston.createLogger({
         align(),
         printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`)
       )
+    }),
+    // Transport that automatically send logs to mongodb
+    new winston.transports.MongoDB({
+      db: `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.rgrkl.mongodb.net/${process.env.DB_DBNAME}`,
+      options: {
+        useUnifiedTopology: true
+      },
+      collection: process.env.DB_COLLECTION_LOGS
     }),
     fileRotateTransportCombined,
     fileRotateTransportInfo,

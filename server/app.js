@@ -34,7 +34,6 @@ try {
   console.log("Connected to database");
 } catch (error) {
   logger.error(error.message);
-  console.log(error);
 }
 
 app.use("/api/stocks", stocks);

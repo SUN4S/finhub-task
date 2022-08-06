@@ -18,7 +18,7 @@ export const symbolLookup = async (req, res) => {
     );
 
     // Checking if axios response contains any data
-    if (!response.data || Object.keys(response.data) === 0) {
+    if (!response.data || Object.keys(response.data).length === 0) {
       logger.warn("Failed to fetch company info. Symbol: " + req.params.query);
       return res.status(404).json({ msg: "No Data Found" });
     }
