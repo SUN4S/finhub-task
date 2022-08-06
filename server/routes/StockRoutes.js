@@ -1,13 +1,8 @@
-const express = require("express");
+import { getData, symbolLookup, updateData } from "../controllers/StockController.js";
 
-const {
-  getData,
-  symbolLookup,
-  updateData,
-  query,
-} = require("../controllers/StockController");
+import express from "express";
 
-const router = express.Router();
+export const router = express.Router();
 
 // Get specific company data by symbol
 router.get("/getData/:symbol", getData);
@@ -17,5 +12,3 @@ router.put("/updateData", updateData);
 
 // Returns company info with prodived query
 router.get("/query/:query", symbolLookup);
-
-module.exports = router;
