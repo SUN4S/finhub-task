@@ -1,16 +1,12 @@
 import "./Dashboard.scss";
 
+import { SearchForm } from "../../Layout/SearchForm/SearchForm";
 import { useEffect } from "react";
-import { useLazySearchQuery } from "../../services/stocks";
 
 export const Dashboard = () => {
-  // Redux toolkit mutation to handle query
-  const [trigger, response] = useLazySearchQuery();
-
-  useEffect(() => {
-    trigger("AAPL");
-  }, []);
-  console.log(response.data);
-
-  return <div id="dashboard">Dashboard</div>;
+  return (
+    <div id="dashboard">
+      <SearchForm />
+    </div>
+  );
 };

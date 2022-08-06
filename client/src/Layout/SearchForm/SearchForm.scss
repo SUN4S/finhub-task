@@ -1,0 +1,19 @@
+#queryForm {
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  box-shadow: none;
+
+  span {
+    position: relative;
+    width: 100%;
+    color: var(--primary);
+    text-align: center;
+    font-size: 12px;
+    padding: 2px 0;
+  }
+}
