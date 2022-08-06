@@ -2,7 +2,7 @@ import { StockDataModel } from "../models/stocks";
 import { baseApi } from "./baseApi";
 
 // Inject a new budgetApi into the baseApi
-export const reportsApi = baseApi.injectEndpoints({
+export const stocksApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     search: builder.query({
       query: (query: string) => ({
@@ -33,4 +33,4 @@ export const reportsApi = baseApi.injectEndpoints({
 });
 
 export const { useStockDataQuery, useLazySearchQuery, useUpdateDataMutation } =
-  reportsApi;
+  stocksApi;

@@ -2,6 +2,7 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 import { baseApi } from "../services/baseApi";
 import { configureStore } from "@reduxjs/toolkit";
+import generalStockReducer from "../features/GeneralStockSlice";
 
 // Redux store, that hold whole application state tree
 // middleware refers to api created with Redux Toolkit
@@ -9,6 +10,7 @@ import { configureStore } from "@reduxjs/toolkit";
 // exported api functions alse have extra functionality, such as load-state, success-state, etc.
 export const store = configureStore({
   reducer: {
+    generalStock: generalStockReducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
