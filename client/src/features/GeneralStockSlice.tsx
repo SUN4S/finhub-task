@@ -7,15 +7,37 @@ import { stocksApi } from "../services/stocks";
 // extraReducers: request that was handled by the api sets the state here
 export const generalStockSlice = createSlice({
   name: "generalStock",
-  initialState: { data: {} } as GeneralStockFetchState,
+  initialState: {
+    data: {},
+    isLoading: false,
+    isSuccess: false,
+  } as GeneralStockFetchState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addMatcher(
+      // Function to add response data to store loading/success state
+      stocksApi.endpoints.search.matchPending,
+      (state) => {
+        state.isLoading = true;
+        state.isSuccess = false;
+      }
+    );
+    builder.addMatcher(
+      // Function to add response data to store loading/success state
+      stocksApi.endpoints.search.matchRejected,
+      (state) => {
+        state.isLoading = false;
+        state.isSuccess = false;
+      }
+    );
     builder.addMatcher(
       // Function to add response data to store general stock data
       stocksApi.endpoints.search.matchFulfilled,
       (state, action?: PayloadAction<GeneralStockState>) => {
         if (action?.payload) {
           state.data = action.payload;
+          state.isLoading = false;
+          state.isSuccess = true;
         }
       }
     );

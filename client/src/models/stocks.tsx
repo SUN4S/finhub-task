@@ -6,6 +6,8 @@ export interface StockDataModel {
 
 export interface GeneralStockFetchState {
   data: GeneralStockState;
+  isLoading: boolean;
+  isSuccess: boolean;
 }
 
 export interface GeneralStockState {
