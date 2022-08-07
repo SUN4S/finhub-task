@@ -14,6 +14,7 @@ export const SearchForm = () => {
   // Redux toolkit mutation to handle query
   const [trigger, companyQuery] = useLazySearchQuery();
 
+  // react Hook Form Definitions
   const {
     handleSubmit,
     reset,
@@ -25,8 +26,11 @@ export const SearchForm = () => {
     },
   });
 
+  // Function to be called on form submit
   const onSubmit = async (data: any) => {
+    // Redux toolkit function to make requests to server
     await trigger(data.query);
+    // React Hook Tools function to reset query input field
     reset({
       query: "",
     });

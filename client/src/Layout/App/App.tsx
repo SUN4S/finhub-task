@@ -1,7 +1,5 @@
 import "./App.scss";
 
-import { Box, Grid } from "@mui/material";
-
 import { Container } from "@mui/system";
 import { Header } from "../Header/Header";
 import { Outlet } from "react-router-dom";

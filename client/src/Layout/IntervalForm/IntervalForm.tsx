@@ -9,24 +9,32 @@ import { useState } from "react";
 import { useUpdateDataMutation } from "../../services/stocks";
 
 export const IntervalForm = () => {
+  // React router function to get params from url
   const { symbol } = useParams();
 
+  // Redux Toolkit mutation to handle post/put requests
   const [update, updateMutation] = useUpdateDataMutation();
 
+  // State that saves start date
   const [startDate, setStartDate] = useState(
     DateTime.now().minus({ weeks: 1 }).toJSDate()
   );
+  // state that saved end date
   const [endDate, setEndDate] = useState(DateTime.now().toJSDate());
 
+  // Form submit function
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    // Creating a new object that will be sent to the server
     const queryObject = {
       symbol: symbol!,
+      // Luxon functions to handle dates
       fromDate: DateTime.fromJSDate(startDate).toUnixInteger(),
       toDate: DateTime.fromJSDate(endDate).toUnixInteger(),
     };
 
-    update(queryObject);
+    //Redux Toolkit function to call request with new object
+    await update(queryObject);
   };
 
   return (

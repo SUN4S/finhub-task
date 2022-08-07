@@ -2,7 +2,6 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 import { baseApi } from "../services/baseApi";
 import { configureStore } from "@reduxjs/toolkit";
-import firstLoadReducer from "../features/FirstLoadSlice";
 import generalStockReducer from "../features/GeneralStockSlice";
 import historicStockReducer from "../features/HistoricStockSlice";
 
@@ -14,7 +13,6 @@ export const store = configureStore({
   reducer: {
     generalStock: generalStockReducer,
     historicStock: historicStockReducer,
-    firstLoad: firstLoadReducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

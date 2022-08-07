@@ -9,6 +9,7 @@ import { SearchForm } from "../../Layout/SearchForm/SearchForm";
 import { useSelector } from "react-redux";
 
 export const Dashboard = () => {
+  // Geting general stock data from redux store
   const generalData = useSelector((state: RootState) => state.generalStock);
 
   return (

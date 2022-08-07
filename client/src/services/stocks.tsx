@@ -16,7 +16,6 @@ export const stocksApi = baseApi.injectEndpoints({
         url: `/stocks/getData/${symbol}`,
         method: "GET",
       }),
-      providesTags: ["Stocks"],
     }),
     updateData: builder.mutation({
       query: (updateData: StockDataModel) => ({

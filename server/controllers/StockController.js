@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import Joi from "joi";
 import axios from "axios";
 import dotenv from "dotenv";
 import { logger } from "../config/winston.js";
@@ -27,6 +28,7 @@ export const symbolLookup = async (req, res) => {
     return res.status(200).json(response.data);
   } catch (error) {
     logger.error(error.message);
+    return res.status(500);
   }
 };
 
@@ -60,6 +62,7 @@ export const getData = async (req, res) => {
     return res.status(200).json(response.data);
   } catch (error) {
     logger.error(error.message);
+    return res.status(500);
   }
 };
 
@@ -75,6 +78,25 @@ export const updateData = async (req, res) => {
   // Adding provided body to variables
   const fromDate = req.body.fromDate;
   const toDate = req.body.toDate;
+
+  // Quick and dirty joi schema
+  const joiSchema = Joi.object({
+    symbol: Joi.string().min(1).max(32),
+    fromDate: Joi.number(),
+    toDate: Joi.number()
+  });
+
+  // Validatin joi schema
+  const data = joiSchema.validate({
+    symbol: req.body.symbol,
+    fromDate,
+    toDate
+  });
+
+  // if joi schema fail, return error message
+  if (data.error) {
+    return res.status(403).json({ msg: "Invalid Request" });
+  }
 
   try {
     // Axios request to get data for provided params
@@ -97,5 +119,6 @@ export const updateData = async (req, res) => {
     return res.status(200).json(response.data);
   } catch (error) {
     logger.error(error.message);
+    return res.status(500);
   }
 };

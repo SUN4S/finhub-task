@@ -9,10 +9,11 @@ export const GeneralList = (props: { data: GeneralStockState }) => {
   // React Router functions to redirect
   const navigate = useNavigate();
 
+  // function that handles redirecting to new page
   const handleClick = () => {
-    console.log(props.data.ticker);
     navigate(`/${props.data.ticker}`);
   };
+
   return (
     <div id="generalContainer">
       <Card sx={{ height: "100%" }} className="card">
