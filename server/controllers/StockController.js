@@ -55,7 +55,7 @@ export const getData = async (req, res) => {
     }
 
     logger.info(
-      `Successfully retrieved company info. Symbol: ${req.params.query}, timeframe: ${fromDate} - ${toDate}`
+      `Successfully retrieved company info. Symbol: ${req.params.symbol}, timeframe: ${fromDate} - ${toDate}`
     );
     return res.status(200).json(response.data);
   } catch (error) {
@@ -86,13 +86,13 @@ export const updateData = async (req, res) => {
     // this indicates that the api failed to get data
     if (response.data.s === "no_data") {
       logger.warn(
-        `Failed to fetch company info. Symbol: ${req.params.symbol}, timeframe: ${fromDate} - ${toDate}`
+        `Failed to fetch company info. Symbol: ${req.body.symbol}, timeframe: ${fromDate} - ${toDate}`
       );
       return res.status(404).json({ msg: "No Data Found" });
     }
 
     logger.info(
-      `Successfully updated company info. Symbol: ${req.params.query}, timeframe: ${fromDate} - ${toDate}`
+      `Successfully updated company info. Symbol: ${req.body.symbol}, timeframe: ${fromDate} - ${toDate}`
     );
     return res.status(200).json(response.data);
   } catch (error) {

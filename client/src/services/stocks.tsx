@@ -21,7 +21,7 @@ export const stocksApi = baseApi.injectEndpoints({
     updateData: builder.mutation({
       query: (updateData: StockDataModel) => ({
         url: `/stocks/updateData`,
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
         },
@@ -32,5 +32,8 @@ export const stocksApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useStockDataQuery, useLazySearchQuery, useUpdateDataMutation } =
-  stocksApi;
+export const {
+  useLazyStockDataQuery,
+  useLazySearchQuery,
+  useUpdateDataMutation,
+} = stocksApi;

@@ -1,0 +1,28 @@
+#intervalForm {
+  height: 48px;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px auto;
+
+  .react-datepicker-wrapper {
+    height: 100%;
+    width: auto;
+
+    .react-datepicker__input-container {
+      height: 100%;
+
+      input {
+        height: 100%;
+      }
+    }
+  }
+
+  button {
+    height: 100%;
+  }
+}

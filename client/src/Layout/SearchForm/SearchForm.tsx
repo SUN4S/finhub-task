@@ -4,7 +4,6 @@ import { Controller, useForm } from "react-hook-form";
 import { Paper, TextField } from "@mui/material";
 
 import LoadingButton from "@mui/lab/LoadingButton";
-import SearchIcon from "@mui/icons-material/Search";
 import { useLazySearchQuery } from "../../services/stocks";
 
 interface FormValues {
