@@ -1,6 +1,7 @@
 import "./Dashboard.scss";
 
 import { Divider } from "@mui/material";
+import { GeneralList } from "../../Layout/GeneralList/GeneralList";
 import { RootState } from "../../app/store";
 import { SearchForm } from "../../Layout/SearchForm/SearchForm";
 import { useEffect } from "react";
@@ -14,7 +15,8 @@ export const Dashboard = () => {
   return (
     <div id="dashboard">
       <SearchForm />
-      <Divider sx={{ py: 1 }} />
+      <Divider sx={{ my: 1 }} />
+      <GeneralList data={generalData} />
     </div>
   );
 };

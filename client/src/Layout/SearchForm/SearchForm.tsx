@@ -35,7 +35,9 @@ export const SearchForm = () => {
 
   return (
     <Paper component="form" onSubmit={handleSubmit(onSubmit)} id="queryForm">
-      {errors.query && <span>{errors.query.message}</span>}
+      {errors.query && (
+        <span className="errorText">{errors.query.message}</span>
+      )}
 
       <Controller
         name={"query"}
@@ -54,7 +56,7 @@ export const SearchForm = () => {
               onChange={onChange}
               value={value}
               label={"Company Search"}
-              sx={{ ml: 1, mr: 1, flex: 1 }}
+              sx={{ mr: 1, flex: 1 }}
               placeholder="AAPL, MSFT, atc."
               inputProps={{ "aria-label": "Search company by symbol" }}
             />

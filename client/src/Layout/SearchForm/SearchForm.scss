@@ -1,19 +1,22 @@
 #queryForm {
-  padding: 2px 4px;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  width: 100%;
-  max-width: 1200px;
+  padding: 12px 4px 2px 4px;
   margin: auto;
   box-shadow: none;
 
-  span {
-    position: relative;
+  .errorText {
+    position: absolute;
     width: 100%;
-    color: var(--primary);
+    justify-self: center;
+    color: var(--danger);
     text-align: center;
     font-size: 12px;
     padding: 2px 0;
+    top: -6px;
   }
 }
